@@ -1,4 +1,3 @@
 __pycache__/
-filter.txt
-in.csv
-out.csv
+static/
+.next
