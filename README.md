@@ -1,13 +1,14 @@
 # ptxn - Transaction Processor
 
-## What is needed?
+## Requirements:
 
-input csv file
+input.csv file with specific column names
 
-## What is optional?
+## Optional:
 
 filter.txt -> a text file where each line is an unwanted transaction
-**For example**
+
+**Ex:**
 
 ```
 gas
@@ -15,4 +16,4 @@ food
 misc
 ```
 
-## I may update this later
+In-progress
