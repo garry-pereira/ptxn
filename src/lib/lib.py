@@ -5,18 +5,18 @@ def display(acc):
     for i in range(len(acc)):
         print(acc[i])
 
-def read_in(acc, filename):
+def read_in(acc, filename, h_date, h_name, h_amount):
     with open(filename, newline='') as csvfile:
         reader = csv.DictReader(csvfile)
         for row in reader:
-            date = create_dates(row["Posting Date"])
+            date = create_dates(row[h_date]) # look down
             # date = row["Posting Date"]
-            name = row["Description"]
-            amount = create_numbers(row["Amount"])
+            name = row[h_name]
+            amount = create_numbers(row[h_amount])
             acc.append({
-                "Posting Date": date,
-                "Description": name,
-                "Amount": amount,
+                h_date: date,
+                h_name: name,
+                h_amount: amount,
             })
 
 def create_dates(date):
@@ -26,14 +26,14 @@ def create_dates(date):
 def create_numbers(num):
     return float(num)
 
-def filter_unwanted(acc, names):
+def filter_unwanted(acc, names, desc):
     for i in range(len(acc) - 1, -1, -1):
-        if any(acc[i]["Description"].startswith(name) for name in names):
+        if any(acc[i][desc].startswith(name) for name in names):
             acc.pop(i)
 
-def filter_month(acc, month):
+def filter_month(acc, month, date):
     for i in range(len(acc) - 1, -1, -1):
-        if acc[i]["Posting Date"].month != month:
+        if acc[i][date].month != month:
             acc.pop(i)
 
 def write_out(acc, filename):
